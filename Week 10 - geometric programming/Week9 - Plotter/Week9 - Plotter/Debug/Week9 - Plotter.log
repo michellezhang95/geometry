@@ -1,0 +1,5 @@
+﻿Z:\Visual Studio 2019\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(459,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Week9 - Plotter.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  main.cpp
+Z:\MDS\Week 10 - geometric programming\Week9 - Plotter\Week9 - Plotter\main.cpp(47,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+Z:\MDS\Week 10 - geometric programming\Week9 - Plotter\Week9 - Plotter\main.cpp(51,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Week9 - Plotter.vcxproj -> Z:\MDS\Week 10 - geometric programming\Week9 - Plotter\Debug\Week9 Programming Exercises.exe
