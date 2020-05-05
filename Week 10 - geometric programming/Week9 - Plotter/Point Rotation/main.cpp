@@ -34,18 +34,20 @@ void drawCalc(int a, int b, int c, int d) {
 	a += 20;
 	//if y axis is negative, offset
 	if (b < 0) {
-		b += 19;
+		b = b * -1;
+		b += 9;
 	}
 	else if (b > 0) {
-		b = 10 - b;
+		b = 9 - b;
 	}
 
 	c += 20;
 	if (d < 0) {
-		d += 19;
+		d = d * -1;
+		d += 9;
 	}
-	else if (d > 0) {
-		d = 10 - b;
+	else if (d >= 10) {
+		d = d - 9;
 	}
 	
 	// each row
@@ -60,11 +62,10 @@ void drawCalc(int a, int b, int c, int d) {
 			}
 			else {
 				if (j != 19 && i != 9) {
-
 					if (i == b && j == a)   {
 						cout << "\b*";
 					}
-					else if (i == d && j == c) {
+				    if (i == d && j == c) {
 						cout << "\bo";
 					}
 					//draw empty space
@@ -72,7 +73,7 @@ void drawCalc(int a, int b, int c, int d) {
 				}
 				else {
 					//draw vertical axis
-					cout << ":";
+					cout << "|";
 				}
 			}
 
@@ -111,8 +112,8 @@ void convert(int x, int y, int x2, int y2, char wise) {
 	//translate back 
 	xnew += xaround;
 	ynew += yaround;
-	xrot += xaround;
-	yrot += yaround;
+	//xrot += xaround;
+	//yrot += yaround;
 	cout << "Result: ("<< xnew << ", "<< ynew<<")" <<endl;
 	drawCalc(xaround, yaround, xnew, ynew);
 
