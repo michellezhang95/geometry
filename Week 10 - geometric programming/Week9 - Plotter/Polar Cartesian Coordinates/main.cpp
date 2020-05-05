@@ -15,18 +15,29 @@ void displayCalc(int, double, double);
 void drawCalc(int,int);
 
 void drawCalc(int a, int b) {
-	for (int i = 0; i < 20; i++) {
-		
-		for (int j = 0; j < 40; j++) {
 
+		a += 20;
+		if (b < 0) b += 19;
+
+	// each row
+	for (int i = 0; i < 20; i++) {
+		//each column
+		for (int j = 0; j < 40; j++) {
+			//draw horizontal axis
 			if (i == 9 && j != 19) {
 				cout << "-";
 			}
 			else {
 				if (j != 19 && i != 9) {
+					
+					if (i == b && j == a) {
+						cout << "\b*";
+					}
+					//draw empty space
 					cout << " ";
 				}
 				else {
+					//draw vertical axis
 					cout << "|";
 				}
 			}
