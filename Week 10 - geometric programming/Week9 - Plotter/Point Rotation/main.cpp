@@ -30,9 +30,20 @@ void convert(int x, int y, int x2, int y2, char wise) {
 	cout << "Around: (" << x2 << ", " << y2 << ")" << endl;
 	cout << "By degrees: " << angle << endl;
 
+	//convert cartesian to polar in preparation to rotate 
+	// polar (r, theta)
 	r = sqrt((pow(x, 2) + pow(y, 2)));
 	theta = atan(y / x);
-	cout << "Result: "
+
+	//rotate to new position using polar coordinates
+	//c++ trig functions use radians so convert angle to radian
+	angle = angle * (3.14159 / 180);
+
+	x3 = 
+
+
+
+	cout << "Result: ";
 }
 int main() {
 	cout << "Enter the coordinate you wish to rotate" << endl;
