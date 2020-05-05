@@ -33,10 +33,20 @@ void drawCalc(int a, int b, int c, int d) {
 	//c and d are the point coord that is rotating around a and b
 	a += 20;
 	//if y axis is negative, offset
-	if (b < 0) b += 19;
+	if (b < 0) {
+		b += 19;
+	}
+	else if (b > 0) {
+		b = 10 - b;
+	}
 
 	c += 20;
-	if (d  < 0) d += 18;
+	if (d < 0) {
+		d += 19;
+	}
+	else if (d > 0) {
+		d = 10 - b;
+	}
 	
 	// each row
 	for (int i = 0; i < 20; i++) {
@@ -54,7 +64,7 @@ void drawCalc(int a, int b, int c, int d) {
 					if (i == b && j == a)   {
 						cout << "\b*";
 					}
-					 if (i == d && j == c) {
+					else if (i == d && j == c) {
 						cout << "\bo";
 					}
 					//draw empty space
@@ -79,13 +89,15 @@ void convert(int x, int y, int x2, int y2, char wise) {
 	cout << "By degrees: " << angle << endl;
 
 	cout << endl << endl;
+	cout << "after" << endl;
 	drawCalc(xaround, yaround, xrot, yrot);
 	
-	if (wise == 'c' || wise == 'C') angle *= -1;
+	if (wise == 'c' || wise == 'C') angle = angle * -1;
 
 	//translate point to origin
 	xrot -= xaround;
 	yrot -= yaround;
+	
 	//c++ trig functions use radians so convert angle to radian
 	angle = angle * (PI/ 180);
 
@@ -94,12 +106,13 @@ void convert(int x, int y, int x2, int y2, char wise) {
 	float c = cos(angle);
 	float s = sin(angle);
 	xnew = (xrot * c) - (yrot * s);
-	ynew = (xrot * s) +( yrot * c);
+	ynew = (xrot * s) + (yrot * c);
 
 	//translate back 
 	xnew += xaround;
 	ynew += yaround;
-	
+	xrot += xaround;
+	yrot += yaround;
 	cout << "Result: ("<< xnew << ", "<< ynew<<")" <<endl;
 	drawCalc(xaround, yaround, xnew, ynew);
 
