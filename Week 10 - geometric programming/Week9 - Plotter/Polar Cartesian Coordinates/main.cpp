@@ -18,8 +18,12 @@ void drawCalc(int a, int b) {
 
 		a += 20;
 		//if y axis is negative, offset
-		if (b < 0) b += 19;
-
+		if (b < 0) {
+			b += 19;
+		}
+		else if (b > 0) {
+			b = 10 - b;
+		}
 	// each row
 	for (int i = 0; i < 20; i++) {
 		//each column
