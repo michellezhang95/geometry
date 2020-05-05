@@ -6,9 +6,7 @@ using namespace std;
 //global variables
 bool type;
 double r, angle;
-//hello
-//testingggg
-//functions
+
 void setSystem(int);
 
 void displayCalc(int, double, double);
