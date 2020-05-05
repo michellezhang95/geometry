@@ -4,59 +4,118 @@
 #include <stdlib.h>
 using namespace std;
 
-//Written by Michelle Zhang BSE20021
+//Written by Michelle Zhang BSE20021//
+
+#define PI 3.14159265
 //Create a command console prompt tool that rotates a Cartesian coordinate
 //about another Cartesian coordinate by a number of degrees.
 
 // Point Rotation
-// original cartesian coordinate
-// convert to polar coordinates
-// rotate to new position
-// convert back to cartesian
-int x, y;
-int x2, y2;
-int x3, y3;
-int angle;
+// rotate a point around something other than the origin
+// 1. translate the whole system so the point of rotation is the origin
+// 2. perform rotation
+// 3. undo translation
+int origin_x = 0;
+int origin_y = 0;
+int xrot, yrot;
+int xaround, yaround;
+int xnew, ynew;
+float angle;
 char wise;
 int r;
 double theta;
 
 void convert(int, int, int, int, char);
+void drawCalc(int, int, int, int);
 
+void drawCalc(int a, int b, int c, int d) {
+	//a and b are the rotation point coord
+	//c and d are the point coord that is rotating around a and b
+	a += 20;
+	//if y axis is negative, offset
+	if (b < 0) b += 19;
+
+	c += 20;
+	if (d  < 0) d += 18;
+	
+	// each row
+	for (int i = 0; i < 20; i++) {
+		//each column
+		for (int j = 0; j < 40; j++) {
+			//draw horizontal axis
+			if (i == 9 && j != 19) {
+				if (a != 0 || c != 0) {
+					cout << "-";
+				}
+			}
+			else {
+				if (j != 19 && i != 9) {
+
+					if (i == b && j == a)   {
+						cout << "\b*";
+					}
+					 if (i == d && j == c) {
+						cout << "\bo";
+					}
+					//draw empty space
+					cout << " ";
+				}
+				else {
+					//draw vertical axis
+					cout << ":";
+				}
+			}
+
+		}
+		cout << endl;
+	}
+
+}
 
 void convert(int x, int y, int x2, int y2, char wise) {
 	system("cls");
-	cout << "Rotate: (" << x << ", " << y << ")" << endl;
-	cout << "Around: (" << x2 << ", " << y2 << ")" << endl;
+	cout << "Rotate: (" << xrot << ", " << yrot << ")" << endl;
+	cout << "Around: (" << xaround << ", " << yaround << ")" << endl;
 	cout << "By degrees: " << angle << endl;
 
-	//convert cartesian to polar in preparation to rotate 
-	// polar (r, theta)
-	r = sqrt((pow(x, 2) + pow(y, 2)));
-	theta = atan(y / x);
+	cout << endl << endl;
+	drawCalc(xaround, yaround, xrot, yrot);
+	
+	if (wise == 'c' || wise == 'C') angle *= -1;
 
-	//rotate to new position using polar coordinates
+	//translate point to origin
+	xrot -= xaround;
+	yrot -= yaround;
 	//c++ trig functions use radians so convert angle to radian
-	angle = angle * (3.14159 / 180);
+	angle = angle * (PI/ 180);
 
-	x3 = 
+	 //x' = x * cos(theta) - y * sin(theta)
+	//y' = x * sin(theta) + y * cos(theta)
+	float c = cos(angle);
+	float s = sin(angle);
+	xnew = (xrot * c) - (yrot * s);
+	ynew = (xrot * s) +( yrot * c);
 
+	//translate back 
+	xnew += xaround;
+	ynew += yaround;
+	
+	cout << "Result: ("<< xnew << ", "<< ynew<<")" <<endl;
+	drawCalc(xaround, yaround, xnew, ynew);
 
-
-	cout << "Result: ";
 }
 int main() {
 	cout << "Enter the coordinate you wish to rotate" << endl;
 	cout << "x coordinate: ";
-	cin >> x;
+	cin >> xrot;
 	cout << "y coordinate: ";
-	cin >> y;
+	cin >> yrot;
 
 	cout << "Enter the coordinate you want to rotate around" << endl;
 	cout << "x2 coordinate: ";
-	cin >> x2;
+	cin >> xaround;
 	cout << "y2 coordinate: ";
-	cin >> y2;
+	cin >> yaround;
 
 	cout << "Angles (in degrees) you wish to rotate by" << endl;
 	cout << "angle: ";
@@ -65,7 +124,7 @@ int main() {
 	cout << "(C)lockwise or (A)nti-clockwise?";
 	cin >> wise;
 
-	convert(x, y, x2, y2, wise);
+	convert(xrot, yrot, xaround, yaround, wise);
 
 	int iTemp;
 	cin >> iTemp;
