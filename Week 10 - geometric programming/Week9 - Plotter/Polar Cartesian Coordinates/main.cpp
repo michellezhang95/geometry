@@ -12,19 +12,27 @@ string quad;
 void setSystem(int);
 void findQuad(double, double);
 void displayCalc(int, double, double);
-void drawCalc();
+void drawCalc(int,int);
 
 void drawCalc(int a, int b) {
-	for (int i = 0; i < 22; i++) {
-		if (i != 9) {
-			cout << "                    |" << endl;
-		}
-		for (int j = 0; j < 25; j++) {
-			if (i == 10) {
-				if (j == a) cout << '*';
-				cout << " -";
+	for (int i = 0; i < 20; i++) {
+		
+		for (int j = 0; j < 40; j++) {
+
+			if (i == 9 && j != 19) {
+				cout << "-";
 			}
+			else {
+				if (j != 19 && i != 9) {
+					cout << " ";
+				}
+				else {
+					cout << "|";
+				}
+			}
+			
 		}
+		cout << endl;
 	}
 
 }
