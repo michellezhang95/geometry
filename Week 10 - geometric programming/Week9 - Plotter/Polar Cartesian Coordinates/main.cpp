@@ -25,7 +25,7 @@ void drawCalc(int a, int b) {
 		else if (b > 0) {
 			b = 10 - b;
 		}
-		cout << a << "    " << b << endl;
+		
 	// each row
 	for (int i = 0; i < 20; i++) {
 		//each column
