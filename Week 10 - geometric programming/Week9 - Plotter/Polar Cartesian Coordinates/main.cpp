@@ -20,7 +20,7 @@ void drawCalc(int a, int b) {
 		//if y axis is negative, offset
 		if (b < 0) {
 			b = b * -1;
-			b += 10;
+			b += 9;
 		}
 		else if (b > 0) {
 			b = 10 - b;
@@ -122,7 +122,9 @@ void displayCalc(int type ,double x, double y) {
 }
 int main() {
 	int input;
+	cout << "Cartesian axis limits x += 20, y -= 9" << endl;
 	cout << "Press 1 for to convert from Cartesian or Press 0 from Polar: ";
+	
 	cin >> input;
 	cout << endl;
 	setSystem(input);
