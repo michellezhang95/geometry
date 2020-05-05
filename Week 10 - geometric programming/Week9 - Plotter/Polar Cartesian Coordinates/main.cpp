@@ -8,13 +8,43 @@ using namespace std;
 bool type;
 double r, angle;
 int x, y;
-char quad;
+string quad;
 void setSystem(int);
 void findQuad(double, double);
 void displayCalc(int, double, double);
+void drawCalc();
 
+void drawCalc(int a, int b) {
+	for (int i = 0; i < 22; i++) {
+		if (i != 9) {
+			cout << "                    |" << endl;
+		}
+		for (int j = 0; j < 25; j++) {
+			if (i == 10) {
+				if (j == a) cout << '*';
+				cout << " -";
+			}
+		}
+	}
+
+}
 //find the quadrant
-
+void findQuad(double a, double b) {
+	if (a >= 0 && b >= 0) {
+		quad = "I";
+	}
+	else if (a >= 0 && b <= 0) {
+		quad = "IV";
+	}
+	else if (a <= 0 && b >= 0) {
+		quad = "II";
+	}
+	else if (a <= 0 && b <= 0) {
+		quad = "III";
+	}
+	cout << "Quadrant:   " << quad << endl <<endl <<endl;
+	
+}
 
 //sets type to whichever system the user chooses
 void setSystem(int b) {
@@ -50,7 +80,8 @@ void displayCalc(int type ,double x, double y) {
 		r = sqrt((pow(x, 2) + pow(y, 2)));
 		angle = atan(y / x);
 		cout << "Polar:   (" << r << ", " << angle << ")" << endl;
-		cout << "Quadrant:  ";
+		findQuad( x, y);
+
 
 	}
 	else { //if polar, then convert to cartesian
@@ -59,7 +90,7 @@ void displayCalc(int type ,double x, double y) {
 		x = r * (cos(angle));
 		y = r * (sin(angle));
 		cout << "Cartesian:  (" << x << ", " << y << ")" << endl;
-		cout << "Quadrant:   ";
+		findQuad(x, y);
 	}
 
 }
@@ -69,7 +100,7 @@ int main() {
 	cin >> input;
 	cout << endl;
 	setSystem(input);
-	
+	drawCalc(x,y);
 
 	int iTemp;
 	cin >> iTemp;
