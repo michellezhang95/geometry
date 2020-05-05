@@ -7,6 +7,7 @@ using namespace std;
 bool type;
 double r, angle;
 // this is a test to see if laptop changes show up bro
+//omg git is amazing
 void setSystem(int);
 
 void displayCalc(int, double, double);
