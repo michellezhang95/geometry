@@ -6,7 +6,7 @@ using namespace std;
 //global variables
 bool type;
 double r, angle;
-
+// this is a test to see if laptop changes show up bro
 void setSystem(int);
 
 void displayCalc(int, double, double);
