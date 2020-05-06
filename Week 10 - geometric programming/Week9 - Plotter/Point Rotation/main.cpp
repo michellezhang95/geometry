@@ -27,7 +27,7 @@ double theta;
 
 void convert(int, int, int, int, char);
 void drawCalc(int, int, int, int);
-
+void GotoXY(int, int);
 void drawCalc(int a, int b, int c, int d) {
 	//a and b are the rotation point coord
 	//c and d are the point coord that is rotating around a and b
@@ -57,17 +57,19 @@ void drawCalc(int a, int b, int c, int d) {
 			//draw horizontal axis
 			if (i == 9 && j != 19) {
 				if (a != 0 || c != 0) {
+					
 					cout << "-";
 				}
 			}
 			else {
 				if (j != 19 && i != 9) {
+					if (i == d && j == c) {
+						cout << "\bo";
+					}
 					if (i == b && j == a)   {
 						cout << "\b*";
 					}
-				    if (i == d && j == c) {
-						cout << "\bo";
-					}
+				   
 					//draw empty space
 					cout << " ";
 				}
@@ -90,7 +92,7 @@ void convert(int x, int y, int x2, int y2, char wise) {
 	cout << "By degrees: " << angle << endl;
 
 	cout << endl << endl;
-	cout << "after" << endl;
+	cout << "Before" << endl;
 	drawCalc(xaround, yaround, xrot, yrot);
 	
 	if (wise == 'c' || wise == 'C') angle = angle * -1;
@@ -112,11 +114,18 @@ void convert(int x, int y, int x2, int y2, char wise) {
 	//translate back 
 	xnew += xaround;
 	ynew += yaround;
-	//xrot += xaround;
-	//yrot += yaround;
 	cout << "Result: ("<< xnew << ", "<< ynew<<")" <<endl;
+	cout << "After" << endl;
 	drawCalc(xaround, yaround, xnew, ynew);
 
+}
+
+void GotoXY(int _iX, int _iY)
+{
+	COORD point;
+	point.X = _iX;
+	point.Y = _iY;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), point);
 }
 int main() {
 	cout << "Enter the coordinate you wish to rotate" << endl;
