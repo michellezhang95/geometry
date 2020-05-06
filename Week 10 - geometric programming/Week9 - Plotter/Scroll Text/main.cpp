@@ -50,8 +50,9 @@ void drawScroll() {
 	//convert to radians 
 	period = period * (PI / 180);
 	cout << period;
+	float x2;
 	while (cont) {
-		ClearScreen();
+		system("cls");
 		
 		cout << endl << endl;
 		for (int i = 0; i < arr_size; i++) {
@@ -62,22 +63,21 @@ void drawScroll() {
 			// phase shift C (omit)
 			// vertical shift D (omit)
 
-			i = i * (PI / 180);
-			
-			if (amp == 0 || amp == 1) {
-				y = sin(i);
+			if (i == 0) {
+				x2 = 0;
 			}
-			else {
-
+			else if (i > 0) {
+				x2 += (PI / 2);
+				//x2 = x2 * (PI / 180);
 			}
 
-			//float y = amp * sin(period*(i));
-			GotoXY(i, y);
+			 y = amp * sin(x2/2);
+			GotoXY(x2, y);
 			cout << scroller[i];
-
+			
 		}
+		
 		Sleep(1000);
-
 	}
 
 
