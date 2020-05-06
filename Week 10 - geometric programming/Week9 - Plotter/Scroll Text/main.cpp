@@ -11,14 +11,21 @@ using namespace std;
 //Scroller 
 //Create a console application that scrolls a text message following a sine curve. 
 
+
+
+
+//READ ME!!!
+// begin with amplitude 2, period 1, right 0, 5 framespeed
+
 int amp, period;
 int dir, frame_spd;
 float y;
+int i;
 bool cont = true;
 void ClearScreen();
 void GotoXY(int, int);
 void drawScroll();
-const char scroller[] = "--------------------HELLO-------IT'S-----A---------WONDERFUL-------DAY";
+ char scroller[] = "--------------------HELLO-------IT'S-----A---------WONDERFUL-------DAY";
 
 void GotoXY(int _iX, int _iY)
 {
@@ -45,52 +52,53 @@ void ClearScreen()
 	SetConsoleCursorPosition(hConsole, coordScreen);
 }
 void drawScroll() {
-	double arr_size = sizeof(scroller) / sizeof(*scroller);
+	int arr_size = sizeof(scroller) / sizeof(*scroller);
 	period = (2 * PI) / period;
 	//convert to radians 
 	period = period * (PI / 180);
 	cout << period;
-	float x2;
+	float x2 = 0.0 ;
+	int interate = 0; 
 	while (cont) {
-		system("cls");
+		ClearScreen();
 		
 		cout << endl << endl;
-		for (int i = 0; i < arr_size; i++) {
-			//convert to radians to use trig functions
-			// sine wave formula y = A sin (B(x+C)) +D
-			// A - amplitude
-			// 2*pi/B - period
-			// phase shift C (omit)
-			// vertical shift D (omit)
+			for (int i = 0; i < arr_size-1; i++) {
 
-			if (i == 0) {
-				x2 = 0;
-			}
-			else if (i > 0) {
-				x2 += (PI / 2);
-				//x2 = x2 * (PI / 180);
-			}
+				if (i == 0) {
+					x2 = 0;
+				}
+				else if (i > 0) {
+					x2 += (PI / 2);
+					//x2 = x2 * (PI / 180);
+				}
 
-			 y = amp * sin(x2/2);
-			GotoXY(x2, y);
-			cout << scroller[i];
-			
+				y = amp * sin(x2 / 2);
+				GotoXY(x2, y);
+				cout << scroller[i];
+				//shift array elements to the end of the array
+				scroller[i] = scroller[i + 1];
+
+				
+
+			}
+			Sleep(1000 / frame_spd);
 		}
+
 		
-		Sleep(1000);
+		
+		
 	}
 
 
 	
-}
+
 int main() {
 
 	cout << "Enter amplitude: ";
 	cin >> amp;
 	cout << "Enter period: ";
 	cin >> period;
-	cout << "Enter direction 0 right 1 left:  ";
-	cin >> dir;
 	cout << "Enter frame speed slow(1-10)fast: ";
 	cin >> frame_spd;
 	//convert to radians to use trig functions
