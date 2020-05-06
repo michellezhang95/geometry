@@ -6,13 +6,15 @@
 using namespace std;
 //global variables
 bool type;
-double r, angle;
+int r;
+float  angle;
 int x, y;
 string quad;
 void setSystem(int);
 void findQuad(double, double);
 void displayCalc(int, double, double);
 void drawCalc(int,int);
+#define PI 3.14159265
 
 void drawCalc(int a, int b) {
 
@@ -107,28 +109,30 @@ void displayCalc(int type ,double x, double y) {
 		angle = atan(y / x);
 		cout << "Polar:   (" << r << ", " << angle << ")" << endl;
 		findQuad( x, y);
+		drawCalc((int)x, (int)y);
 
 
 	}
 	else { //if polar, then convert to cartesian
 		cout << "Polar:  (" << x << ", " << y << ")" << endl;
-		angle = angle * (3.14159 / 180);
+		angle = angle * (PI / 180);
 		x = r * (cos(angle));
 		y = r * (sin(angle));
-		cout << "Cartesian:  (" << x << ", " << y << ")" << endl;
-		findQuad(x, y);
+		cout << "Cartesian:  (" << (int) x << ", " << (int) y << ")" << endl;
+		findQuad((int)x,(int) y);
+		drawCalc((int)x, (int)y);
 	}
 
 }
 int main() {
 	int input;
-	cout << "Cartesian axis limits x += 20, y -= 9" << endl;
+	cout << "Cartesian axis limits x += 10, y -= 9" << endl;
 	cout << "Press 1 for to convert from Cartesian or Press 0 from Polar: ";
 	
 	cin >> input;
 	cout << endl;
 	setSystem(input);
-	drawCalc(x,y);
+	
 
 	int iTemp;
 	cin >> iTemp;
