@@ -95,9 +95,9 @@ void drawScroll() {
 
 int main() {
 
-	cout << "Enter amplitude: ";
+	cout << "Enter amplitude(2-10): ";
 	cin >> amp;
-	cout << "Enter period: ";
+	cout << "Enter period(2-6): ";
 	cin >> period;
 	cout << "Enter frame speed slow(1-10)fast: ";
 	cin >> frame_spd;
