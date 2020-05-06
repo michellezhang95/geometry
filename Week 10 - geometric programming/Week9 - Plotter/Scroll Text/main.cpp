@@ -4,6 +4,8 @@
 #include <stdlib.h>
 using namespace std;
 
+#define PI 3.14159265
+
 // Written by Michelle Zhang //
 
 //Scroller 
@@ -51,8 +53,8 @@ int main() {
 	cin >> dir;
 	cout << "Enter frame speed slow(1-10)fast: ";
 	cin >> frame_spd;
-	
-	
+	//convert to radians to use trig functions
+
 	
 	double arr_size = sizeof(scroller) / sizeof(*scroller);
 
@@ -63,7 +65,16 @@ int main() {
 		ClearScreen();
 
 		for (int i = 0; i < arr_size; i++) {
+			//convert to radians to use trig functions
+			// sine wave formula y = A sin (B(x+C)) +D
+			// A - amplitude
+			// 2*pi/B - period
+			// phase shift C (omit)
+			// vertical shift D (omit)
 
+			
+			period = 2 * PI / period;
+			float y = amp * sin(i)
 		}
 
 	}
