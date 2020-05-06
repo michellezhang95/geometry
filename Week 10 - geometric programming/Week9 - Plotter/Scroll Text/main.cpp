@@ -16,6 +16,7 @@ int dir, frame_spd;
 bool cont = true;
 void ClearScreen();
 void GotoXY(int, int);
+void drawScroll();
 const char scroller[] = "--------------------HELLO-------IT'S-----A---------WONDERFUL-------DAY";
 
 void GotoXY(int _iX, int _iY)
@@ -42,7 +43,35 @@ void ClearScreen()
 		coordScreen, &cCharsWritten);
 	SetConsoleCursorPosition(hConsole, coordScreen);
 }
+void drawScroll() {
+	double arr_size = sizeof(scroller) / sizeof(*scroller);
+	while (cont) {
+		ClearScreen();
+		
+		cout << endl << endl;
+		for (int i = 0; i < arr_size; i++) {
+			//convert to radians to use trig functions
+			// sine wave formula y = A sin (B(x+C)) +D
+			// A - amplitude
+			// 2*pi/B - period
+			// phase shift C (omit)
+			// vertical shift D (omit)
 
+			i = i * (PI / 180);
+			period = 2 * PI / period;
+
+			float y = amp * sin(i);
+			GotoXY(i, y);
+			cout << scroller[i];
+
+		}
+		Sleep(1000);
+
+	}
+
+
+	
+}
 int main() {
 
 	cout << "Enter amplitude: ";
@@ -56,29 +85,9 @@ int main() {
 	//convert to radians to use trig functions
 
 	
-	double arr_size = sizeof(scroller) / sizeof(*scroller);
+	
 
-
-
-
-	while (cont) {
-		ClearScreen();
-
-		for (int i = 0; i < arr_size; i++) {
-			//convert to radians to use trig functions
-			// sine wave formula y = A sin (B(x+C)) +D
-			// A - amplitude
-			// 2*pi/B - period
-			// phase shift C (omit)
-			// vertical shift D (omit)
-
-			
-			period = 2 * PI / period;
-			float y = amp * sin(i)
-		}
-
-	}
-
+	drawScroll();
 
 	int iTemp;
 	cin >> iTemp;
