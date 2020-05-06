@@ -13,6 +13,7 @@ using namespace std;
 
 int amp, period;
 int dir, frame_spd;
+float y;
 bool cont = true;
 void ClearScreen();
 void GotoXY(int, int);
@@ -45,6 +46,10 @@ void ClearScreen()
 }
 void drawScroll() {
 	double arr_size = sizeof(scroller) / sizeof(*scroller);
+	period = (2 * PI) / period;
+	//convert to radians 
+	period = period * (PI / 180);
+	cout << period;
 	while (cont) {
 		ClearScreen();
 		
@@ -58,9 +63,15 @@ void drawScroll() {
 			// vertical shift D (omit)
 
 			i = i * (PI / 180);
-			period = 2 * PI / period;
+			
+			if (amp == 0 || amp == 1) {
+				y = sin(i);
+			}
+			else {
 
-			float y = amp * sin(i);
+			}
+
+			//float y = amp * sin(period*(i));
 			GotoXY(i, y);
 			cout << scroller[i];
 
